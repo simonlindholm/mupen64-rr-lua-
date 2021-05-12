@@ -31,7 +31,7 @@
 #define RECOMP_H
 
 #include "x86/assemble.h"
-#include "../lua/LuaDefine.h"
+#include "../lua/luaDefine.h"
 
 typedef struct _precomp_instr
 {

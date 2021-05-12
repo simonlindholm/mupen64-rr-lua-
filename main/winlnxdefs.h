@@ -49,6 +49,7 @@ typedef void* LPVOID;
 
 #define __declspec(dllexport)
 #define _cdecl
+#define __cdecl
 #define __stdcall
 #define WINAPI
 

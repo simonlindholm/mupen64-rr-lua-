@@ -40,7 +40,7 @@
 #include "../memory/tlb.h"
 
 #define LUACONSOLE_H_NOINCLUDE_WINDOWS_H
-#include "../../lua/LuaConsole.h"
+#include "../lua/LuaConsole.h"
 
 #ifdef _MSC_VER
 #define isnan _isnan

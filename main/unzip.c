@@ -1129,7 +1129,7 @@ extern int ZEXPORT unzOpenCurrentFile3 (
       pfile_in_zip_read_info->stream.zalloc = (alloc_func)0;
       pfile_in_zip_read_info->stream.zfree = (free_func)0;
       pfile_in_zip_read_info->stream.opaque = (voidpf)0;
-      pfile_in_zip_read_info->stream.next_in = (Bytef)0;
+      pfile_in_zip_read_info->stream.next_in = 0;
       pfile_in_zip_read_info->stream.avail_in = 0;
 
       err=inflateInit2(&pfile_in_zip_read_info->stream, -MAX_WBITS);
@@ -1166,7 +1166,7 @@ extern int ZEXPORT unzOpenCurrentFile3 (
     if (password != NULL)
     {
         int i;
-        s->pcrc_32_tab = get_crc_table();
+        s->pcrc_32_tab = (const unsigned long*)get_crc_table();
         init_keys(password,s->keys,s->pcrc_32_tab);
         if (ZSEEK(s->z_filefunc, s->filestream,
                   s->pfile_in_zip_read->pos_in_zipfile +

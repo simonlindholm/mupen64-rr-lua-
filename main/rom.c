@@ -37,6 +37,11 @@
 #include <zlib.h>
 #include <string.h>
 #include <ctype.h>
+#ifdef _MSC_VER
+#define strcasecmp	_stricmp
+#else
+#include <strings.h>
+#endif
 
 #include "rom.h"
 #include "../memory/memory.h"
@@ -45,7 +50,7 @@
 #include "md5.h"
 #include "mupenIniApi.h"
 #include "guifuncs.h"
-#include <win/rombrowser.h>
+// #include "win/rombrowser.h"
 
 static FILE *rom_file;
 static gzFile z_rom_file;
@@ -93,10 +98,10 @@ static int findsize()
 bool validRomExt(std::string str) {
 	// z64,n64,v64,rom
 	const char* cstr = str.c_str();
-	return stricmp(cstr, "z64") ||
-		   stricmp(cstr, "n64") ||
-		   stricmp(cstr, "v64") ||
-		   stricmp(cstr, "rom");
+	return strcasecmp(cstr, "z64") ||
+		   strcasecmp(cstr, "n64") ||
+		   strcasecmp(cstr, "v64") ||
+		   strcasecmp(cstr, "rom");
 }
 static int find_file(char *argv)
 {

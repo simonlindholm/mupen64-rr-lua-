@@ -4,7 +4,7 @@ CC		=gcc
 CXX		=g++
 
 #CFLAGS		=-DX86 -O3 -mpentium -Wall -DEMU64_DEBUG
-CFLAGS		=-DX86 -O3 -fexpensive-optimizations -fomit-frame-pointer -funroll-loops -ffast-math -fno-strict-aliasing -mcpu=athlon -Wall -pipe
+CFLAGS		=-DX86 -x c++ -m32 -O3 -fexpensive-optimizations -fomit-frame-pointer -funroll-loops -ffast-math -fno-strict-aliasing -mcpu=athlon -Wall -pipe $(EXTRA_CFLAGS)
 #CFLAGS		=-DX86 -O3 -mcpu=pentium -Wall -g -pg
 #CFLAGS		=-DX86 -Wall -pipe -g3 -DEMU64_DEBUG
 #CFLAGS		=-DX86 -Wall -pipe -g -DEMU64_DEBUG -DCOMPARE_CORE
@@ -180,6 +180,8 @@ r4300/interupt.o:	r4300/interupt.c
 
 main/main.o:	main/main.c
 		$(CC) $(CFLAGS) -c -o $@ $< `sdl-config --cflags`
+
+main/plugin.o:	EXTRA_CFLAGS = -fpermissive
 
 main/main_gtk.o:	main/main_gtk.c
 			$(CC) $(CFLAGS) -c -o $@ $< $(GTK_FLAGS) `sdl-config --cflags`
